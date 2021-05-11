@@ -57,7 +57,9 @@ ROOT_URLCONF = 'easycar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'cars/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
