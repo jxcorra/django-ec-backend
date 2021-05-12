@@ -1,0 +1,17 @@
+body {
+    font: 1.2em "Courier", monospace;
+}
+
+li {
+    color: #e35f5f;
+}
+
+a {
+    color: #5897fb;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #5b80b2;
+}
+

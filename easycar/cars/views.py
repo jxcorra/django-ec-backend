@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
@@ -22,7 +20,7 @@ class CreateMakeView(CreateView):
 
 
 class ListModelView(ListView):
-    template_name = 'make_list.html'
+    template_name = 'model_list.html'
 
     def get_queryset(self):
         make_id = self.kwargs.get('make_id')
