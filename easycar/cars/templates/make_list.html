@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<ul>
-{% for obj in object_list %}
-    <li>
-        <a href="{% url 'models-list' obj.id %}">{{ obj.name }}</a>
-    </li>
-{% endfor %}
-</ul>
+    <a
+        href="{% url 'makes-list' %}?order=models"
+    >
+        Sort by models count
+    </a>
+
+    <ul>
+    {% for obj in object_list %}
+        <li>
+            <a href="{% url 'models-list' obj.id %}">{{ obj.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}

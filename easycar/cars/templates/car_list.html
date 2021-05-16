@@ -5,17 +5,17 @@
     {% for obj in object_list %}
         <li>
             <a
-                    href="{% url 'model-cars-list' make_id obj.id %}"
+                href="{% url 'car-details' obj.pk %}"
             >
-                {{ obj.name }}
+                {{ obj.owner.username }} / {{ obj.model.name }} / {{ obj.model.make.name }}
             </a>
         </li>
     {% endfor %}
     </ul>
 
     <a
-        href="{% url 'makes-list' %}"
+        href="{% url 'models-list' make_id %}"
     >
-        Back to makes list
+        Back to models list
     </a>
 {% endblock %}
