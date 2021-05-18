@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # own
+    'core.apps.CoreConfig',
     'cars.apps.CarsConfig',
 ]
 
