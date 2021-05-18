@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # own
     'core.apps.CoreConfig',
     'cars.apps.CarsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
