@@ -11,9 +11,9 @@ from cars.views import (
 
 urlpatterns = [
     path('makes/', list_make_view, name='makes-list'),
-    re_path(r'/makes/(?P<make_id>\d+)', details_make_view, name='make-details'),
+    re_path(r'^makes/(?P<pk>\d+)$', details_make_view, name='make-details'),
     path('models/', list_model_view, name='models-list'),
-    re_path(r'/models/(?P<model_id>\d+)', details_model_view, name='model-details'),
+    re_path(r'models/(?P<pk>\d+)', details_model_view, name='model-details'),
     path('cars/', list_car_view, name='cars-list'),
-    re_path(r'/cars/(?P<car_id>\d+)', details_car_view, name='car-details'),
+    re_path(r'cars/(?P<car_pk>\d+)', details_car_view, name='car-details'),
 ]

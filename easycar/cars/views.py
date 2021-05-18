@@ -36,8 +36,13 @@ class CarListView(generics.ListCreateAPIView):
 
 
 class CarDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'car_pk'
     serializer_class = CarWithOwnerSerializer
     queryset = Car.objects.all()
+
+    def get_object(self):
+        lookup_field_value = self.kwargs[self.lookup_field]
+        return Car.objects.get(pk=lookup_field_value)
 
 
 list_make_view = MakeListView.as_view()
