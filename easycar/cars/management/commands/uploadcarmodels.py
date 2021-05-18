@@ -38,6 +38,8 @@ class Command(BaseCommand):
         makes = []
         for make_result in make_results:
             makes.append(self.__create_make_from_json(make_result))
+
+        # TODO: Do not silent errors (remove `ignore_conflicts`) tech debt
         Make.objects.bulk_create(makes, ignore_conflicts=True)
 
         makes_count = Make.objects.count()
