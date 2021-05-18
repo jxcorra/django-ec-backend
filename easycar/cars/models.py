@@ -4,12 +4,14 @@ from django.core.files.storage import default_storage
 from django.db import models
 
 # Create your models here.
-from cars.managers import CarManager
+from cars.managers import CarManager, MakeManager, ModelManager
 from core.models import TimestampedModel, SafeDeleteModel
 
 
 class Make(TimestampedModel, SafeDeleteModel, models.Model):
     name = models.CharField(max_length=64, help_text='Car model make', unique=True)
+
+    objects = MakeManager()
 
     def __str__(self):
         return f'Make name={self.name}'
@@ -20,6 +22,8 @@ class Model(TimestampedModel, SafeDeleteModel, models.Model):
     make = models.ForeignKey(
         to=Make, on_delete=models.CASCADE, related_name='models',
     )
+
+    objects = ModelManager()
 
     def __str__(self):
         return f'Model name={self.name} make={self.make.name}'

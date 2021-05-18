@@ -17,7 +17,7 @@ class MakeListView(generics.ListCreateAPIView):
 
 class MakeDetailsView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MakeSerializer
-    queryset = Make.objects.all()
+    queryset = Make.objects.not_deleted()
 
 
 class ModelListView(generics.ListCreateAPIView):
@@ -27,7 +27,7 @@ class ModelListView(generics.ListCreateAPIView):
 
 class ModelDetailsView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ModelSerializer
-    queryset = Model.objects.all()
+    queryset = Model.objects.not_deleted()
 
 
 class CarListView(generics.ListCreateAPIView):
@@ -38,7 +38,7 @@ class CarListView(generics.ListCreateAPIView):
 class CarDetailsView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'car_pk'
     serializer_class = CarWithOwnerSerializer
-    queryset = Car.objects.all()
+    queryset = Car.objects.not_deleted()
 
     def get_object(self):
         lookup_field_value = self.kwargs[self.lookup_field]
