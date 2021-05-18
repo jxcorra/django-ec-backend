@@ -17,10 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
+
+swagger_view = get_schema_view(title='EasyCar API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cars/', include('cars.urls')),
+    path('docs/', swagger_view),
 ]
 
 if settings.MEDIA_ROOT and settings.MEDIA_URL:
