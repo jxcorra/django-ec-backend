@@ -1,18 +1,18 @@
 # Create your views here.
-from django.db.models import Count
-from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView
-
-from cars.models import Make, Model, Car
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 
+from cars.models import Make, Model, Car
 from cars.serializers import MakeSerializer, ModelSerializer, CarWithOwnerSerializer
+from core.paginators import LargeResultsSetPagination, StandardResultsSetPagination
 
 
 class MakeListView(generics.ListCreateAPIView):
     serializer_class = MakeSerializer
     queryset = Make.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name']
+    pagination_class = LargeResultsSetPagination
 
 
 class MakeDetailsView(generics.RetrieveUpdateDestroyAPIView):
@@ -23,6 +23,9 @@ class MakeDetailsView(generics.RetrieveUpdateDestroyAPIView):
 class ModelListView(generics.ListCreateAPIView):
     serializer_class = ModelSerializer
     queryset = Model.objects.all()
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['make__id']
 
 
 class ModelDetailsView(generics.RetrieveUpdateDestroyAPIView):
@@ -33,6 +36,7 @@ class ModelDetailsView(generics.RetrieveUpdateDestroyAPIView):
 class CarListView(generics.ListCreateAPIView):
     serializer_class = CarWithOwnerSerializer
     queryset = Car.objects.all()
+    pagination_class = StandardResultsSetPagination
 
 
 class CarDetailsView(generics.RetrieveUpdateDestroyAPIView):
