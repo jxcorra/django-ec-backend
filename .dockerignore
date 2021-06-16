@@ -1,5 +1,0 @@
-**/*.sqlite3
-*.sqlite3
-
-# static
-/easycar/static/
