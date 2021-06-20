@@ -15,7 +15,7 @@ class MakeTestCase(TestCase):
         response = self.client.get(reverse('makes-list'))
 
         self.assertEqual(expected_status_code, response.status_code)
-        self.assertEqual(expected_make_count, len(response.json()))
+        self.assertEqual(expected_make_count, len(response.json()['results']))
 
     def test_create_new_make(self):
         expected_status_code = 201
