@@ -60,3 +60,6 @@ class MakeTestCase(TestCase):
 
         self.assertEqual(expected_status_code, response.status_code)
         self.assertEqual(expected_make_count, Make.objects.not_deleted().count())
+
+    def test_mock(self):
+        self.assertEqual(True, True)
