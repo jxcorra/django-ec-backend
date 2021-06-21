@@ -10,7 +10,7 @@ class MakeTestCase(TestCase):
     def test_get_existing(self):
         Make.objects.create(name='Some manifacturer')
         expected_status_code = 200
-        expected_make_count = 0
+        expected_make_count = 1
 
         response = self.client.get(reverse('makes-list'))
 
