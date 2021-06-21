@@ -82,4 +82,4 @@ jobs:
             -p 8000:8000 \
             --name django-ec-backend \
             --network ec-backend \
-            django-ec-backend
+            docker.pkg.github.com/jxcorra/django-ec-backend/django-ec-backend:latest
