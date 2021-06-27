@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -147,4 +147,28 @@ MEDIA_ROOT = FILES_DEFAULT_UPLOAD_TO = 'storage'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+}
+
+CELERY_ALWAYS_EAGER = False
+BROKER_URL = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json', 'pickle']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
+CELERY_MAX_TASKS_PER_CHILD = 10
+CELERY_TASK_CREATE_MISSING_QUEUES = True
+CELERY_IMPORTS = [
+    'cars.tasks',
+]
+
+CELERYBEAT_SCHEDULE = {
+    'refresh-makers': {
+        'task': 'cars.refresh_makers',
+        'schedule': timedelta(seconds=10),
+    },
+    'refresh-makers-models': {
+        'task': 'cars.run_refresh_models',
+        'schedule': timedelta(seconds=10),
+    },
 }
