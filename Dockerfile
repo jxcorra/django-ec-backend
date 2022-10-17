@@ -1,4 +1,4 @@
-FROM python:3.9.6-slim-buster
+FROM python:3.10.7-slim-buster
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
